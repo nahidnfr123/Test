@@ -12,9 +12,9 @@ destination = '/src/components/'
 def cmd(path):
     if os.path.isdir(path):
         # subprocess.Popen("ls", cwd=path)
-        subprocess.Popen(['git', 'add', '.'], stdout=subprocess.PIPE)
-        subprocess.Popen(['git', 'commit', '-m', '"Python Automated Git Commit"'], stdout=subprocess.PIPE)
-        pushed = subprocess.Popen(['git', 'push', '-u', 'origin', 'master'], stdout=subprocess.PIPE)
+        subprocess.Popen(['git', 'add', '.'], stdout=subprocess.PIPE, cwd=path)
+        subprocess.Popen(['git', 'commit', '-m', '"Python Automated Git Commit"'], stdout=subprocess.PIPE, cwd=path)
+        pushed = subprocess.Popen(['git', 'push', '-u', 'origin', 'master'], stdout=subprocess.PIPE, cwd=path)
         test = pushed.communicate()[0]
         print(test)
         # subprocess.Popen("git pull", cwd=path)
