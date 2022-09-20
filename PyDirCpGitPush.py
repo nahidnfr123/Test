@@ -11,6 +11,7 @@ destination = '/src/components/'
 
 def git_push(path, branch):
     if os.path.isdir(path):
+        subprocess.Popen(['git', 'pull'], stdout=subprocess.PIPE, cwd=path)
         subprocess.Popen(['git', 'add', '.'], stdout=subprocess.PIPE, cwd=path)
         subprocess.Popen(['git', 'commit', '-m', '"Python Automated Git Commit"'], stdout=subprocess.PIPE, cwd=path)
         subprocess.Popen(['git', 'push', '-u', 'origin', branch], stdout=subprocess.PIPE, cwd=path)
@@ -32,6 +33,7 @@ def copy_folders():
                 os.remove(final_destination)
             # Paste directory
             shutil.copytree(sourcePath, final_destination, symlinks=False, ignore=shutil.ignore_patterns('*.idea', '*.git'), dirs_exist_ok=False)
+            # push files
             git_push(baseDir + target, branch)
             print(source, 'has been moved to', target, '!')
         else:
