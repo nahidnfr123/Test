@@ -39,7 +39,7 @@ def copy_folders():
         else:
             print("Directory does not exist")
 
-# copy_folders()
+copy_folders()
 
 # Fetching the list of all the files
 # files = os.listdir(sourcePath)
