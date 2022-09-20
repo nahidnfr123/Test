@@ -9,7 +9,7 @@ projects = ["Project 1", "Project 2"]
 destination = '/src/components/'
 
 
-def cmd(path):
+def git_push(path):
     if os.path.isdir(path):
         subprocess.Popen(['git', 'add', '.'], stdout=subprocess.PIPE, cwd=path)
         subprocess.Popen(['git', 'commit', '-m', '"Python Automated Git Commit"'], stdout=subprocess.PIPE, cwd=path)
@@ -31,7 +31,7 @@ def copy_folders():
                 os.remove(final_destination)
             # Paste directory
             shutil.copytree(sourcePath, final_destination, symlinks=False, ignore=shutil.ignore_patterns('*.idea', '*.git'), dirs_exist_ok=False)
-            cmd(baseDir + target)
+            git_push(baseDir + target)
             print(source, 'has been moved to', target, '!')
         else:
             print("Directory does not exist")
