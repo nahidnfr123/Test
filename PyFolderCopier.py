@@ -11,9 +11,18 @@ destination = '/src/components/'
 
 def cmd(path):
     if os.path.isdir(path):
-        subprocess.Popen("git pull", cwd=path)
-        subprocess.Popen("git commit -am 'Python Automated Git Commit'", cwd=path)
-        subprocess.Popen("git push -u origin dev", cwd=path)
+        # subprocess.Popen("ls", cwd=path)
+        subprocess.Popen(['git', 'add', '.'], stdout=subprocess.PIPE)
+        subprocess.Popen(['git', 'commit', '-m', '"Python Automated Git Commit"'], stdout=subprocess.PIPE)
+        pushed = subprocess.Popen(['git', 'push', '-u', 'origin', 'master'], stdout=subprocess.PIPE)
+        test = pushed.communicate()[0]
+        print(test)
+        # subprocess.Popen("git pull", cwd=path)
+        # subprocess.Popen("git commit -am 'Python Automated Git Commit'", cwd=path)
+        # subprocess.Popen("git push -u origin master", cwd=path)
+
+
+cmd('C:/Users/NFR/Desktop/GitAutomation/test')
 
 
 def copy_folders():
@@ -21,18 +30,20 @@ def copy_folders():
         destination_path = baseDir + target + destination
         final_destination = destination_path + source
         if os.path.isdir(sourcePath) and os.path.isdir(destination_path):
+            # Remove existing directory
             if os.path.isdir(final_destination):
                 shutil.rmtree(final_destination)
+            # Remove existing file
             elif os.path.isfile(final_destination):
                 os.remove(final_destination)
+            # Paste directory
             shutil.copytree(sourcePath, final_destination, symlinks=False, ignore=shutil.ignore_patterns('*.idea', '*.git'), dirs_exist_ok=False)
-            #cmd(baseDir + target)
+            # cmd(baseDir + target)
             print(source, 'has been moved to', target, '!')
         else:
             print("Directory does not exist")
 
-
-copy_folders()
+# copy_folders()
 
 # Fetching the list of all the files
 # files = os.listdir(sourcePath)
