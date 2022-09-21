@@ -5,12 +5,14 @@ import subprocess
 baseDir = "/home/nahid/Desktop/Projects/"
 source = "NfrExamination"
 sourcePath = baseDir + source
-projects = ["allexambd", "biddabari-web", "biologykillers", "canvas-ict", "coursecab", "englishmojapb", "marchforwardbd-new", "medilogy", "p2a", "studyplex", "tutoracademia"]
+projects = ["allexambd", "biddabari-web", "biologykillers", "canvas-ict", "coursecab", "englishmojapb",
+            "marchforwardbd-new", "medilogy", "p2a", "studyplex", "tutoracademia"]
 destination = '/src/components/'
 
 
 def git_push(path, branch):
     if os.path.isdir(path):
+        subprocess.Popen(['git', 'checkout', 'dev'], stdout=subprocess.PIPE, cwd=path)
         subprocess.Popen(['git', 'add', '.'], stdout=subprocess.PIPE, cwd=path)
         subprocess.Popen(['git', 'commit', '-m', '"Python Automated Git Commit!"'], stdout=subprocess.PIPE, cwd=path)
         subprocess.Popen(['git', 'pull'], stdout=subprocess.PIPE, cwd=path)
@@ -22,7 +24,7 @@ def git_push(path, branch):
 
 
 def copy_folders():
-    branch = input('Git branch name:')
+    # branch = input('Git branch name:')
     for target in projects:
         destination_path = baseDir + target + destination
         final_destination = destination_path + source
@@ -34,9 +36,10 @@ def copy_folders():
             elif os.path.isfile(final_destination):
                 os.remove(final_destination)
             # Paste directory
-            shutil.copytree(sourcePath, final_destination, symlinks=False, ignore=shutil.ignore_patterns('*.idea', '*.git'), dirs_exist_ok=False)
+            shutil.copytree(sourcePath, final_destination, symlinks=False,
+                            ignore=shutil.ignore_patterns('*.idea', '*.git'), dirs_exist_ok=False)
             # push files
-            git_push(baseDir + target, branch)
+            git_push(baseDir + target, 'dev')
             print(source, 'has been moved to', target, '!')
         else:
             print("Directory does not exist")
