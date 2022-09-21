@@ -2,18 +2,20 @@ import os
 import shutil
 import subprocess
 
-baseDir = "C:/Users/NFR/Desktop/Projects/"
+baseDir = "/home/nahid/Desktop/Projects/"
 source = "NfrExamination"
 sourcePath = baseDir + source
-projects = ["Project 1", "Project 2"]
+projects = ["allexambd", "biddabari-web", "biologykillers", "canvas-ict", "coursecab", "englishmojapb", "marchforwardbd-new", "medilogy", "p2a", "studyplex", "tutoracademia"]
 destination = '/src/components/'
 
 
 def git_push(path, branch):
     if os.path.isdir(path):
+        subprocess.Popen(['git', 'add', '.'], stdout=subprocess.PIPE, cwd=path)
+        subprocess.Popen(['git', 'commit', '-m', '"Commit Previous!"'], stdout=subprocess.PIPE, cwd=path)
         subprocess.Popen(['git', 'pull'], stdout=subprocess.PIPE, cwd=path)
         subprocess.Popen(['git', 'add', '.'], stdout=subprocess.PIPE, cwd=path)
-        subprocess.Popen(['git', 'commit', '-m', '"Python Automated Git Commit"'], stdout=subprocess.PIPE, cwd=path)
+        subprocess.Popen(['git', 'commit', '-m', '"Python Automated Git Commit!"'], stdout=subprocess.PIPE, cwd=path)
         subprocess.Popen(['git', 'push', '-u', 'origin', branch], stdout=subprocess.PIPE, cwd=path)
         # test = pushed.communicate()[0]
         # print(test)
