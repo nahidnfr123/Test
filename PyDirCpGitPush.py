@@ -12,9 +12,9 @@ destination = '/src/components/'
 
 def git_push(path, branch):
     if os.path.isdir(path):
-        subprocess.Popen(['git', 'checkout', 'dev'], stdout=subprocess.PIPE, cwd=path)
         subprocess.Popen(['git', 'add', '.'], stdout=subprocess.PIPE, cwd=path)
         subprocess.Popen(['git', 'commit', '-m', '"Python Automated Git Commit!"'], stdout=subprocess.PIPE, cwd=path)
+        subprocess.Popen(['git', 'checkout', 'dev'], stdout=subprocess.PIPE, cwd=path)
         subprocess.Popen(['git', 'pull'], stdout=subprocess.PIPE, cwd=path)
         subprocess.Popen(['git', 'add', '.'], stdout=subprocess.PIPE, cwd=path)
         subprocess.Popen(['git', 'commit', '-m', '"Python Automated Git Commit!"'], stdout=subprocess.PIPE, cwd=path)
