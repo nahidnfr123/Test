@@ -5,8 +5,7 @@ import subprocess
 baseDir = "/home/nahid/Desktop/Projects/"
 source = "NfrExamination"
 sourcePath = baseDir + source
-projects = ["allexambd", "biddabari-web", "biologykillers", "canvas-ict", "coursecab", "englishmojapb",
-            "marchforwardbd-new", "medilogy", "p2a", "studyplex", "tutoracademia"]
+projects = ["allexambd", "biddabari-web", "biologykillers", "canvas-ict", "coursecab", "englishmojapb", "marchforwardbd-new", "medilogy", "p2a", "studyplex", "tutoracademia"]
 destination = '/src/components/'
 
 
@@ -37,8 +36,7 @@ def copy_folders():
             elif os.path.isfile(final_destination):
                 os.remove(final_destination)
             # Paste directory
-            shutil.copytree(sourcePath, final_destination, symlinks=False,
-                            ignore=shutil.ignore_patterns('*.idea', '*.git'), dirs_exist_ok=False)
+            shutil.copytree(sourcePath, final_destination, symlinks=False, ignore=shutil.ignore_patterns('*.idea', '*.git'), dirs_exist_ok=False)
             # push files
             git_push(baseDir + target, 'dev')
             print(source, 'has been moved to', target, '!')
