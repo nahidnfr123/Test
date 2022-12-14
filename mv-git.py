@@ -5,7 +5,7 @@ import subprocess
 baseDir = "/home/nahid/Desktop/Projects/"
 source = "NfrExamination"
 sourcePath = baseDir + source
-projects = ["allexambd", "biddabari-web", "biologykillers", "canvas-ict", "coursecab", "englishmojapb", "marchforwardbd-new", "medilogy", "p2a", "studyplex", "tutoracademia", "mediaim"]
+projects = ["allexambd", "biddabari-web", "canvas-ict", "coursecab", "englishmojapb", "marchforwardbd-new", "medilogy", "p2a", "studyplex", "tutoracademia", "mediaim", "shawonsbangla-web", "admission-assistant-web", "ieducation-web", "lingual-academy", 'youthcareer-web']
 destination = '/src/components/'
 
 
